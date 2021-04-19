@@ -20,11 +20,11 @@ func WithContext(ctx context.Context) Group {
 }
 
 func (g Group) Wait() error {
-	cancelErr := g.ctx.Err()
-	if err := g.Group.Wait(); err != nil {
+	
+   if err := g.Group.Wait(); err != nil {
 		return err
 	}
-	return cancelErr
+	return g.ctx.Err()
 }
 
 func (g Group) GoCtx(f func(ctx context.Context) error) {
