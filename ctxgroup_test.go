@@ -37,3 +37,14 @@ func TestContextAlreadyCancelled(t *testing.T) {
 		t.Fatalf(`expected the error to be "context canceled", got %v (%T)`, err, err)
 	}
 }
+
+func TestWaitErrorOnFunctionSuccess(t *testing.T) {
+	ctx := context.Background()
+	g := ctxgroup.WithContext(ctx)
+	g.GoCtx(func(ctx context.Context) error {
+		return nil
+	})
+	if err := g.Wait(); err != nil {
+		t.Fatalf(`expected error to be nil, got %v`, err)
+	}
+}
