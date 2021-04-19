@@ -45,6 +45,6 @@ func TestWaitErrorOnFunctionSuccess(t *testing.T) {
 		return nil
 	})
 	if err := g.Wait(); err != nil {
-		t.Fatalf(`expected error to be nil, got %v`, err)
+		t.Fatalf("expected error to be nil, got %v", err)
 	}
 }
